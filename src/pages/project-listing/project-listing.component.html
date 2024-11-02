@@ -1,0 +1,19 @@
+@let projects = (projects$ | async);
+
+@if (projects?.length) {
+<span>Projetos ({{projects?.length}})</span>
+<input type="checkbox" name="subscribe" />
+<span>Apenas Favoritos</span>
+<select>
+    <option>Ordem Alfabética</option>
+    <option>Projetos iniciados mais recentemente</option>
+    <option>Projetos próximos à data de finalização</option>
+</select>
+<button>+ Novo projeto</button>
+@for (project of projects; track $index) {
+<pre>{{project | json}}</pre>
+}} @else {
+<div>Nenhum projeto</div>
+<div>Clique no botão abaixo para criar o primeiro e gerenciá-lo.</div>
+<button>+ Novo projeto</button>
+}
