@@ -13,6 +13,7 @@
 <button>+ Novo projeto</button>
 @for (project of projects; track $index) {
 <pre>{{project | json}}</pre>
+<button (click)="onEditproject(project.id)">✏️ Editar</button>
 }} @else {
 <div>Nenhum projeto</div>
 <div>Clique no botão abaixo para criar o primeiro e gerenciá-lo.</div>

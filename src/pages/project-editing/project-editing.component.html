@@ -1,0 +1,14 @@
+<a (click)="returnToListingPage()">voltar</a>
+<div>Editar projeto</div>
+<div>Nome do projeto (obrigatorio)</div>
+<input type="text" [formControl]="nameControl">
+<div>Cliente (obrigatorio)</div>
+<input type="text" [formControl]="costumerControl">
+<div>Data de Início (obrigatorio)</div>
+<input type="date" [formControl]="startDateControl">
+<div>Data Final (obrigatorio)</div>
+<input type="date" [formControl]="endDateControl">
+<div>Capa do projeto</div>
+<img src="">
+<button>🗑️</button>
+<button>Salvar projeto</button>

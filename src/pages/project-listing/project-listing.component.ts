@@ -3,6 +3,7 @@ import GetProjectsService from "../../services/get-projects.service";
 import { AsyncPipe, JsonPipe } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { combineLatest, map, startWith } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'project-listing',
@@ -41,4 +42,7 @@ export class ProjectListingComponent {
             return filteredProjects
         })
     )
+    private readonly _router = inject(Router)
+
+    onEditproject(id: number) { this._router.navigate(['/editing', id]) }
 }
