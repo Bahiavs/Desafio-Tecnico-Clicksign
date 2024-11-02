@@ -1,9 +1,9 @@
 @let projects = (filteredProjects$ | async);
 
-<input [formControl]="filteredTextControl" type="text" placeholder="Digite o nome do projeto..." />
+<input [formControl]="filterTextControl" type="text" placeholder="Digite o nome do projeto..." />
 @if (projects?.length) {
-<span>Projetos ({{projects?.length}})</span>
-<input type="checkbox" name="subscribe" />
+<span>Projetos ({{(projects$ | async)?.length}})</span>
+<input [formControl]="filterStarredControl" type="checkbox"/>
 <span>Apenas Favoritos</span>
 <select>
     <option>Ordem Alfabética</option>
