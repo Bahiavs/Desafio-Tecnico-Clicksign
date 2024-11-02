@@ -5,10 +5,10 @@
 <span>Projetos ({{(projects$ | async)?.length}})</span>
 <input [formControl]="filterStarredControl" type="checkbox"/>
 <span>Apenas Favoritos</span>
-<select>
-    <option>Ordem Alfabética</option>
-    <option>Projetos iniciados mais recentemente</option>
-    <option>Projetos próximos à data de finalização</option>
+<select [formControl]="assortmentControl">
+    <option value="alphabetical">Ordem Alfabética</option>
+    <option value="mostRecentStarted">Iniciados mais recentemente</option>
+    <option value="closerToCompletionDate">Próximos à data de finalização</option>
 </select>
 <button>+ Novo projeto</button>
 @for (project of projects; track $index) {
