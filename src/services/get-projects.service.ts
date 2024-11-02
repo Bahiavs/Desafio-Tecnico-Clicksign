@@ -3,7 +3,7 @@ import { BehaviorSubject } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export default class GetProjectsService {
-    private readonly _projects$ = new BehaviorSubject<Project[]>([])
+    private readonly _projects$ = new BehaviorSubject<Project[]>(mock)
     readonly projects$ = this._projects$.asObservable();
 }
 
