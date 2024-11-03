@@ -18,6 +18,6 @@ interface GetProjectDTO {
     costumer: string
     startDate: Date
     endDate: Date
-    coverUrl: string
+    coverUrl: File
     isStarred: boolean
 }

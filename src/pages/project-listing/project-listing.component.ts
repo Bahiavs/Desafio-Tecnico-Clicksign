@@ -12,18 +12,17 @@ import { Router } from '@angular/router';
     templateUrl: './project-listing.component.html',
 })
 export class ProjectListingComponent {
-    readonly projects$ = inject(GetProjectsService).projects$
+    readonly projects = inject(GetProjectsService).execute()
     readonly filterTextControl = new FormControl('')
     readonly filterStarredControl = new FormControl(false)
     readonly assortmentControl = new FormControl<'alphabetical' | 'mostRecentStarted' | 'closerToCompletionDate'>('alphabetical')
     readonly filteredProjects$ = combineLatest([
-        this.projects$,
         this.filterTextControl.valueChanges.pipe(startWith(this.filterTextControl.value)),
         this.filterStarredControl.valueChanges.pipe(startWith(this.filterStarredControl.value)),
         this.assortmentControl.valueChanges.pipe(startWith(this.assortmentControl.value)),
     ]).pipe(
-        map(([projects, filterText, isFilteringStarred, assortment]) => {
-            let filteredProjects = projects.filter(project => {
+        map(([filterText, isFilteringStarred, assortment]) => {
+            let filteredProjects = this.projects.filter(project => {
                 if (isFilteringStarred && !project.isStarred) return false
                 if (!project.name.includes(filterText!)) return false
                 return true

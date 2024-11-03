@@ -1,9 +1,9 @@
-@let projects = (filteredProjects$ | async);
+@let filteredProjects = (filteredProjects$ | async);
 
 <input [formControl]="filterTextControl" type="text" placeholder="Digite o nome do projeto..." />
-@if (projects?.length) {
-<span>Projetos ({{(projects$ | async)?.length}})</span>
-<input [formControl]="filterStarredControl" type="checkbox"/>
+@if (filteredProjects?.length) {
+<span>Projetos ({{projects.length}})</span>
+<input [formControl]="filterStarredControl" type="checkbox" />
 <span>Apenas Favoritos</span>
 <select [formControl]="assortmentControl">
     <option value="alphabetical">Ordem Alfabética</option>
@@ -11,7 +11,7 @@
     <option value="closerToCompletionDate">Próximos à data de finalização</option>
 </select>
 <button>+ Novo projeto</button>
-@for (project of projects; track $index) {
+@for (project of filteredProjects; track $index) {
 <pre>{{project | json}}</pre>
 <button (click)="onEditproject(project.id)">✏️ Editar</button>
 }} @else {
