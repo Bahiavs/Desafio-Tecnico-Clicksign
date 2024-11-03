@@ -44,4 +44,6 @@ export class ProjectListingComponent {
     private readonly _router = inject(Router)
 
     onEditproject(id: string) { this._router.navigate(['/editing', id]) }
+    
+    openProjectCreationPage() { this._router.navigate(['/creation']) }
 }

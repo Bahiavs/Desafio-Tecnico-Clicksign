@@ -8,6 +8,12 @@ export default class Project {
         private _isStarred: boolean,
     ) { }
 
+    static create(name: string, costumer: string, startDate: Date, endDate: Date, coverUrl: File): Project {
+        const id = crypto.randomUUID()
+        const isStarred = false
+        return new Project(id, name, costumer, startDate, endDate, coverUrl, isStarred)
+    }
+
     getName() { return this._name }
 
     getCostumer() { return this._costumer }
@@ -39,7 +45,7 @@ export default class Project {
     updateCoverUrl(coverUrl: File) {
         this._coverUrl = coverUrl
     }
-    
+
     updateIsStarred(isStarred: boolean) {
         this._isStarred = isStarred
     }

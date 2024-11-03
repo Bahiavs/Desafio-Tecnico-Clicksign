@@ -20,6 +20,10 @@ export default class ProjectRepository {
     update(project: Project) {
         this._db.update(project.id, { name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverUrl: project.getCoverUrl(), isStarred: project.getIsStarred() })
     }
+
+    create(project: Project) {
+        this._db.insert({ id: project.id, name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverUrl: project.getCoverUrl(), isStarred: project.getIsStarred() })
+    }
 }
 
 @Injectable({ providedIn: 'root' })
@@ -49,5 +53,9 @@ class MemoryDB {
             if (item.id !== id) return item
             return { id, ...data }
         })
+    }
+    
+    insert(data: any) {
+        this._storage.push(data)
     }
 }
