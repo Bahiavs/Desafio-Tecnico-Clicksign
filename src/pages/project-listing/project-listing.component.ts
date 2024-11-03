@@ -44,5 +44,5 @@ export class ProjectListingComponent {
     )
     private readonly _router = inject(Router)
 
-    onEditproject(id: number) { this._router.navigate(['/editing', id]) }
+    onEditproject(id: string) { this._router.navigate(['/editing', id]) }
 }

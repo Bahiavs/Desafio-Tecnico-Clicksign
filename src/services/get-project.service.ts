@@ -5,7 +5,7 @@ import GetProjectsService from "./get-projects.service";
 export default class GetProjectService {
     private readonly _getProjectsService = inject(GetProjectsService)
 
-    execute(id: number): GetProjectDTO {
+    execute(id: string): GetProjectDTO {
         const project = this._getProjectsService.execute().find(project => project.id === id)
         if (!project) throw 'Id not found'
         return project
@@ -13,7 +13,7 @@ export default class GetProjectService {
 }
 
 interface GetProjectDTO {
-    id: number;
+    id: string;
     name: string
     costumer: string
     startDate: Date

@@ -21,9 +21,8 @@ export class ProjectEditingComponent implements OnInit {
 
     ngOnInit() {
         this._activatedRoute.paramMap.subscribe(params => {
-            const id = params.get('id')
-            if (!id) return
-            const project = this._getProject.execute(Number(id))
+            const id = params.get('id')!
+            const project = this._getProject.execute(id)
             this.nameControl.setValue(project.name)
             this.costumerControl.setValue(project.costumer)
             this.startDateControl.setValue(project.startDate)
