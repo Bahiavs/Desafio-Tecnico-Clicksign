@@ -18,7 +18,7 @@ export default class ProjectRepository {
     }
 
     update(project: Project) {
-        this._db.update(project.id, { name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverUrl: project.getCoverUrl() })
+        this._db.update(project.id, { name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverUrl: project.getCoverUrl(), isStarred: project.getIsStarred() })
     }
 }
 
@@ -37,7 +37,7 @@ class MemoryDB {
     ]
 
     get(id: string): any {
-        return this._storage.find(item => item.id)
+        return this._storage.find(item => item.id === id)
     }
 
     getAll(): any[] {
