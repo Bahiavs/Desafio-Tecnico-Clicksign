@@ -7,11 +7,13 @@ import { Router } from '@angular/router';
 import { Dialog } from '@angular/cdk/dialog';
 import { DeleteDialogConfirmationDialogComponent } from '../../components/delete-project-confirmation-dialog/delete-project-confirmation-dialog.component';
 import ToggleProjectStarService from '../../services/toggle-project-star.service';
+import { MenuButtonComponent } from '../../components/menu-button/menu-button.component';
+import { StarToggleComponent } from '../../components/star-toggle/star-toggle.component';
 
 @Component({
     selector: 'project-listing',
     standalone: true,
-    imports: [AsyncPipe, JsonPipe, ReactiveFormsModule, DatePipe],
+    imports: [AsyncPipe, JsonPipe, ReactiveFormsModule, DatePipe, MenuButtonComponent, StarToggleComponent],
     templateUrl: './project-listing.component.html',
     styleUrl: './project-listing.component.scss'
 })
