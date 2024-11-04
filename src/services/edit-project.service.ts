@@ -11,7 +11,7 @@ export default class EditProjectService {
         project.updateCostumer(input.costumer)
         project.updateStartDate(input.startDate)
         project.updateEndDate(input.endDate)
-        project.updateCoverUrl(input.coverUrl)
+        project.updateCoverImg(input.coverImg)
         this._projectRepository.update(project)
     }
 }
@@ -22,5 +22,5 @@ interface Input {
     costumer: string
     startDate: Date
     endDate: Date
-    coverUrl: File
+    coverImg: File
 }

@@ -26,7 +26,7 @@ export class ProjectCreationComponent {
             costumer: this.costumerControl.value!,
             startDate: this.startDateControl.value!,
             endDate: this.endDateControl.value!,
-            coverUrl: this.coverImgControl.value!,
+            coverImg: this.coverImgControl.value!,
         })
     }
 

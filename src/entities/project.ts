@@ -4,14 +4,14 @@ export default class Project {
         private _costumer: string,
         private _startDate: Date,
         private _endDate: Date,
-        private _coverUrl: File,
+        private _coverImg: File,
         private _isStarred: boolean,
     ) { }
 
-    static create(name: string, costumer: string, startDate: Date, endDate: Date, coverUrl: File): Project {
+    static create(name: string, costumer: string, startDate: Date, endDate: Date, coverImg: File): Project {
         const id = crypto.randomUUID()
         const isStarred = false
-        return new Project(id, name, costumer, startDate, endDate, coverUrl, isStarred)
+        return new Project(id, name, costumer, startDate, endDate, coverImg, isStarred)
     }
 
     getName() { return this._name }
@@ -22,7 +22,7 @@ export default class Project {
 
     getEndDate() { return this._endDate }
 
-    getCoverUrl() { return this._coverUrl }
+    getCoverImg() { return this._coverImg }
 
     getIsStarred() { return this._isStarred }
 
@@ -42,8 +42,8 @@ export default class Project {
         this._endDate = endDate
     }
 
-    updateCoverUrl(coverUrl: File) {
-        this._coverUrl = coverUrl
+    updateCoverImg(coverImg: File) {
+        this._coverImg = coverImg
     }
 
     toggleStar() {

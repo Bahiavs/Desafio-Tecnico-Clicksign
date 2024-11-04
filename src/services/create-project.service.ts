@@ -7,7 +7,7 @@ export default class CreateProjectService {
     private readonly _projectRepository = inject(ProjectRepository)
 
     execute(input: Input) {
-        const project = Project.create(input.name, input.costumer, input.startDate, input.endDate, input.coverUrl)
+        const project = Project.create(input.name, input.costumer, input.startDate, input.endDate, input.coverImg)
         this._projectRepository.create(project)
     }
 }
@@ -17,5 +17,5 @@ interface Input {
     costumer: string
     startDate: Date
     endDate: Date
-    coverUrl: File
+    coverImg: File
 }

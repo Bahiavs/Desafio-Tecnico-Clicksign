@@ -13,7 +13,7 @@ export default class GetProjectService {
             costumer: project.getCostumer(),
             startDate: project.getStartDate(),
             endDate: project.getEndDate(),
-            coverUrl: project.getCoverUrl(),
+            coverImg: project.getCoverImg(),
             isStarred: project.getIsStarred(),
         }
     }
@@ -25,6 +25,6 @@ interface Output {
     costumer: string
     startDate: Date
     endDate: Date
-    coverUrl: File
+    coverImg: File
     isStarred: boolean
 }
