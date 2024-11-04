@@ -7,6 +7,7 @@ export default class ToggleProjectStarService {
     
     execute(id: string) {
         const project = this._projectRepository.get(id)
+        if (!project) throw new Error('Projeto não encontrado')
         project.toggleStar()
         this._projectRepository.update(project)
     }

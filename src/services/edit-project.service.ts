@@ -7,6 +7,7 @@ export default class EditProjectService {
 
     execute(input: Input) {
         const project = this._projectRepository.get(input.id)
+        if (!project) throw new Error('Projeto não encontrado')
         project.updateName(input.name)
         project.updateCostumer(input.costumer)
         project.updateStartDate(input.startDate)
@@ -22,5 +23,5 @@ interface Input {
     costumer: string
     startDate: Date
     endDate: Date
-    coverImg: File
+    coverImg: File | null
 }

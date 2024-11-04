@@ -12,6 +12,6 @@
 <div>Capa do projeto</div>
 <input (change)="setFile($event)" type="file" accept=".jpg,.jpeg,.png" />
 <img [src]="img?.getImgUrl$ | async" alt="Image Preview" style="max-width: 300px; max-height: 300px;" />
-<button>🗑️</button>
+<button (click)="removeCoverImg()">🗑️</button>
 
 <button (click)="editProject()">Salvar projeto</button>

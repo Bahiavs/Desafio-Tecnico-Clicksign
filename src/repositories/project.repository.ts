@@ -6,8 +6,9 @@ import MemoryDB from "../databases/memory.database";
 export default class ProjectRepository {
     private readonly _db = new MemoryDB()
 
-    get(id: string): Project {
+    get(id: string): Project | null {
         const projectData = this._db.get(id)
+        if (!projectData) return null
         const project = Project.restore(projectData.id, projectData.name, projectData.costumer, projectData.startDate, projectData.endDate, projectData.coverImg, projectData.isStarred)
         return project
     }

@@ -8,6 +8,7 @@ export default class GetProjectService {
 
     execute(id: string): Output {
         const project = this._projectRepository.get(id)
+        if (!project) throw new Error('Projeto não encontrado')
         return {
             id: project.id,
             name: project.getName(),

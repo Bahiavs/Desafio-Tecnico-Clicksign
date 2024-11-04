@@ -67,8 +67,8 @@ export default class Project {
         this._endDate = endDate
     }
 
-    updateCoverImg(coverImg: File) {
-        this._coverImg = new ImageVO(coverImg)
+    updateCoverImg(coverImg: File | null) {
+        this._coverImg = coverImg ? new ImageVO(coverImg) : null
     }
 
     toggleStar() {
