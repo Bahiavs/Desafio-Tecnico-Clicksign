@@ -13,6 +13,7 @@
 <button (click)="openProjectCreationPage()">+ Novo projeto</button>
 @for (project of filteredProjects; track $index) {
 <pre>{{project | json}}</pre>
+<img [attr.src]="project.coverImg | async" style="max-width: 300px; max-height: 300px;" />
 <button (click)="onEditproject(project.id)">✏️ Editar</button>
 <button (click)="deleteProject(project.id, project.name)">🗑️ Remover</button>
 <button (click)="toggleProjectStar(project.id)">⭐ {{project.isStarred}}</button>

@@ -1,3 +1,5 @@
+import { Observable } from "rxjs"
+
 export default class Project {
     constructor(readonly id: string,
         private _name: string,
@@ -23,6 +25,15 @@ export default class Project {
     getEndDate() { return this._endDate }
 
     getCoverImg() { return this._coverImg }
+
+    getCoverImgUrl$(): Observable<string | ArrayBuffer | null | undefined> {
+        return new Observable(observer => {
+            const reader = new FileReader()
+            reader.onload = () => observer.next(reader.result)
+            reader.onerror = () => observer.error(new Error('Error reading file'))
+            reader.readAsDataURL(this._coverImg)
+        })
+    }
 
     getIsStarred() { return this._isStarred }
 

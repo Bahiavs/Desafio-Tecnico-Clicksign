@@ -60,7 +60,7 @@ export class ProjectListingComponent {
             this._getProjectsService.execute()
         })
     }
-    
+
     toggleProjectStar(id: string) {
         this._toggleProjectStarService.execute(id)
         this._getProjectsService.execute()

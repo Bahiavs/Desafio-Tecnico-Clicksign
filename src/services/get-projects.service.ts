@@ -7,15 +7,15 @@ export default class GetProjectsService {
     private readonly _projectRepository = inject(ProjectRepository)
     private readonly _projects$ = new BehaviorSubject<Output[]>([])
 
-    execute(): Observable<Output[]>  {
+    execute(): Observable<Output[]> {
         const projects = this._projectRepository.getAll()
-        const output: Output[] =  projects.map(project => ({
+        const output: Output[] = projects.map(project => ({
             id: project.id,
             name: project.getName(),
             costumer: project.getCostumer(),
             startDate: project.getStartDate(),
             endDate: project.getEndDate(),
-            coverImg: project.getCoverImg(),
+            coverImg: project.getCoverImgUrl$(),
             isStarred: project.getIsStarred()
         }))
         this._projects$.next(output)
@@ -29,6 +29,6 @@ interface Output {
     costumer: string
     startDate: Date
     endDate: Date
-    coverImg: File
+    coverImg: Observable<string | ArrayBuffer | null | undefined>
     isStarred: boolean
 }
