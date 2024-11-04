@@ -25,7 +25,7 @@ export default class ProjectRepository {
     create(project: Project) {
         this._db.insert({ id: project.id, name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverImg: project.getCoverImg(), isStarred: project.getIsStarred() })
     }
-    
+
     delete(id: string) {
         this._db.delete(id)
     }

@@ -16,7 +16,8 @@ export class ProjectCreationComponent {
     readonly costumerControl = new FormControl('')
     readonly startDateControl = new FormControl<Date>(new Date())
     readonly endDateControl = new FormControl<Date>(new Date())
-    readonly coverImgControl = new FormControl<File | null>(null)
+    readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
+    imageUrl: string | ArrayBuffer | null | undefined = null
 
     returnToListingPage() { this._router.navigate(['/']) }
 
@@ -30,7 +31,27 @@ export class ProjectCreationComponent {
         })
     }
 
-    setFile(event: any) {
-        this.coverImgControl.setValue(event.target.files[0])
+    setFile(event: Event) {
+        const input = event.target as HTMLInputElement
+        if (!input.files) return
+        if (input.files.length === 0) return
+        const file = input.files[0]
+        this.coverImgControl.setValue(file)
+        this._previewImage(file)
+    }
+
+    private _previewImage(file: File) {
+        const reader = new FileReader()
+        reader.onload = (e) => this.imageUrl = e.target?.result
+        reader.readAsDataURL(file)
+    }
+
+    private _fileTypeValidator(control: any): { [key: string]: boolean } | null {
+        if (!control.value) return null
+        if (!control.value.length) return null
+        const file: File = control.value[0]
+        const validTypes = ['image/jpeg', 'image/png']
+        if (validTypes.indexOf(file.type) !== -1) return null
+        return { invalidFileType: true }
     }
 }
