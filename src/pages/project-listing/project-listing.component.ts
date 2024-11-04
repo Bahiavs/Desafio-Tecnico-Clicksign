@@ -4,9 +4,9 @@ import { AsyncPipe, JsonPipe } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { combineLatest, map, startWith } from 'rxjs';
 import { Router } from '@angular/router';
-import DeleteProjectService from '../../services/delete-project.service';
 import { Dialog } from '@angular/cdk/dialog';
 import { DeleteDialogConfirmationDialogComponent } from '../../components/delete-project-confirmation-dialog/delete-project-confirmation-dialog.component';
+import ToggleProjectStarService from '../../services/toggle-project-star.service';
 
 @Component({
     selector: 'project-listing',
@@ -16,6 +16,7 @@ import { DeleteDialogConfirmationDialogComponent } from '../../components/delete
 })
 export class ProjectListingComponent {
     private readonly _getProjectsService = inject(GetProjectsService)
+    private readonly _toggleProjectStarService = inject(ToggleProjectStarService)
     private readonly _dialog = inject(Dialog)
     private readonly _router = inject(Router)
     readonly projects$ = this._getProjectsService.execute()
@@ -58,6 +59,11 @@ export class ProjectListingComponent {
             if (!deletionHappened) return
             this._getProjectsService.execute()
         })
+    }
+    
+    toggleProjectStar(id: string) {
+        this._toggleProjectStarService.execute(id)
+        this._getProjectsService.execute()
     }
 
     openProjectCreationPage() { this._router.navigate(['/creation']) }

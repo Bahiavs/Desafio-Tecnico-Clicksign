@@ -46,7 +46,7 @@ export default class Project {
         this._coverUrl = coverUrl
     }
 
-    updateIsStarred(isStarred: boolean) {
-        this._isStarred = isStarred
+    toggleStar() {
+        this._isStarred = !this._isStarred
     }
 }
