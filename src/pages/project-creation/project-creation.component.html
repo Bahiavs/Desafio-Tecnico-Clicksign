@@ -9,6 +9,6 @@
 <div>Data Final (obrigatorio)</div>
 <input type="date" [formControl]="endDateControl">
 <div>Capa do projeto</div>
-<input type="file" accept="image/png, image/jpeg" />
+<input (change)="setFile($event)" type="file" accept="image/png, image/jpeg" />
 <button>🗑️</button>
 <button (click)="createProject()">Salvar projeto</button>
