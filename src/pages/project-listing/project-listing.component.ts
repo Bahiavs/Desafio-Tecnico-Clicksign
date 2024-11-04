@@ -32,7 +32,7 @@ export class ProjectListingComponent {
         map(([projects, filterText, isFilteringStarred, assortment]) => {
             let filteredProjects = projects.filter(project => {
                 if (isFilteringStarred && !project.isStarred) return false
-                if (!project.name.includes(filterText!)) return false
+                if (filterText!.length > 2 && !project.name.includes(filterText!)) return false
                 return true
             })
             switch (assortment) {
