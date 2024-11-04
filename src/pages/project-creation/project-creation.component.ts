@@ -16,21 +16,26 @@ export class ProjectCreationComponent {
     private readonly _router = inject(Router)
     readonly nameControl = new FormControl('')
     readonly costumerControl = new FormControl('')
-    readonly startDateControl = new FormControl<Date>(new Date())
-    readonly endDateControl = new FormControl<Date>(new Date())
+    readonly startDateControl = new FormControl<string | null>(null)
+    readonly endDateControl = new FormControl<string | null>(null)
     readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
     img = new ImageVO(new File([''], ''))
 
     returnToListingPage() { this._router.navigate(['/']) }
 
     createProject() {
-        this._createProject.execute({
-            name: this.nameControl.value!,
-            costumer: this.costumerControl.value!,
-            startDate: this.startDateControl.value!,
-            endDate: this.endDateControl.value!,
-            coverImg: this.coverImgControl.value!,
-        })
+        try {
+            this._createProject.execute({
+                name: this.nameControl.value!,
+                costumer: this.costumerControl.value!,
+                startDate: new Date(this.startDateControl.value!),
+                endDate: new Date(this.endDateControl.value!),
+                coverImg: this.coverImgControl.value!,
+            })
+            alert('Criado com sucesso!')
+        } catch (error) {
+            alert(error)
+        }
     }
 
     setFile(event: Event) {

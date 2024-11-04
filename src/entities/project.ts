@@ -9,7 +9,24 @@ export default class Project {
         private _endDate: Date,
         private _coverImg: ImageVO,
         private _isStarred: boolean,
-    ) { }
+    ) { 
+        const isNameValid = () => {
+            if (_name.length === 0) return false
+            return true
+        }
+        const isCostumerValid = () => {
+            if (_costumer.length === 0) return false
+            return true
+        }
+        const areDatesValid = () => {
+            if (_endDate.getTime() - _startDate.getTime() <= 0) return false
+            return true
+        }
+        
+        if (!isNameValid()) throw new Error('Invalid name')
+        if (!isCostumerValid()) throw new Error('Invalid costumer')
+        if (!areDatesValid()) throw new Error('Invalid dates')
+    }
 
     static create(name: string, costumer: string, startDate: Date, endDate: Date, coverImg: File): Project {
         const id = crypto.randomUUID()
