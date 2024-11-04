@@ -2,23 +2,36 @@
 
 <input [formControl]="filterTextControl" type="text" placeholder="Digite o nome do projeto..." />
 @if ((projects$ | async)?.length) {
-<span>Projetos ({{(projects$ | async)?.length}})</span>
-<input [formControl]="filterStarredControl" type="checkbox" />
-<span>Apenas Favoritos</span>
-<select [formControl]="assortmentControl">
-    <option value="alphabetical">Ordem Alfabética</option>
-    <option value="mostRecentStarted">Iniciados mais recentemente</option>
-    <option value="closerToCompletionDate">Próximos à data de finalização</option>
-</select>
-<button (click)="openProjectCreationPage()">+ Novo projeto</button>
-@for (project of filteredProjects; track $index) {
-<pre>{{project | json}}</pre>
-<img [attr.src]="project.coverImg?.getImgUrl$ | async" style="max-width: 300px; max-height: 300px;" />
-<button (click)="onEditproject(project.id)">✏️ Editar</button>
-<button (click)="deleteProject(project.id, project.name)">🗑️ Remover</button>
-<button (click)="toggleProjectStar(project.id)">⭐ {{project.isStarred}}</button>
-}} @else {
-<div>Nenhum projeto</div>
-<div>Clique no botão abaixo para criar o primeiro e gerenciá-lo.</div>
-<button (click)="openProjectCreationPage()">+ Novo projeto</button>
+    <span>Projetos ({{(projects$ | async)?.length}})</span>
+    <input [formControl]="filterStarredControl" type="checkbox" />
+    <span>Apenas Favoritos</span>
+    <select [formControl]="assortmentControl">
+        <option value="alphabetical">Ordem Alfabética</option>
+        <option value="mostRecentStarted">Iniciados mais recentemente</option>
+        <option value="closerToCompletionDate">Próximos à data de finalização</option>
+    </select>
+    <button (click)="openProjectCreationPage()">+ Novo projeto</button>
+    <div id="card-ctn">
+    @for (project of filteredProjects; track $index) {
+        <div class="card">
+            <div class="card-upper">
+                <div class="card-control">
+                    <button class="start-btn" (click)="toggleProjectStar(project.id)">⭐ {{project.isStarred}}</button>
+                    <button class="edit-btn" (click)="onEditproject(project.id)">✏️ Editar</button>
+                    <button class="remove-btn" (click)="deleteProject(project.id, project.name)">🗑️ Remover</button>
+                </div>
+                <img class="cover-img" [attr.src]="project.coverImg?.getImgUrl$ | async"/>
+            </div>
+            <div>{{project.name}}</div>
+            <div>Cliente: {{project.costumer}}</div>
+            <hr />
+            <div>📆 {{project.startDate | date: "dd 'de' MMMM 'de' yyyy" : 'pt-BR'}}</div>
+            <div>📆 {{project.endDate | date: "dd 'de' MMMM 'de' yyyy" : 'pt-BR'}}</div>
+        </div>
+    }
+    </div>
+} @else {
+    <div>Nenhum projeto</div>
+    <div>Clique no botão abaixo para criar o primeiro e gerenciá-lo.</div>
+    <button (click)="openProjectCreationPage()">+ Novo projeto</button>
 }

@@ -1,0 +1,45 @@
+:host {
+    display: block;
+    background-color: #f4f2ff;
+    padding: 2rem; // tmp
+} 
+
+#card-ctn {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 21.625rem), 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: white;
+    border-radius: 1rem;
+    border: .0625rem solid #DCDCDC;
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    overflow: hidden;
+}
+
+.card-upper {
+    position: relative;
+}
+
+.cover-img {
+    width: 100%;
+    height: 100%;
+    background-color: #695ccd;
+}
+
+.card-control {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.start-btn {
+}
+
+.edit-btn {
+}
+
+.remove-btn {
+}

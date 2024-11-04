@@ -1,15 +1,3 @@
-:root {
-  color-scheme: dark;
-  background-color: black;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  // font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+@use './styles/body.scss';
+@use './styles/root.scss';
+@use './styles/img.scss';

@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import GetProjectsService from "../../services/get-projects.service";
-import { AsyncPipe, JsonPipe } from "@angular/common";
+import { AsyncPipe, DatePipe, JsonPipe } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { combineLatest, map, startWith } from 'rxjs';
 import { Router } from '@angular/router';
@@ -11,8 +11,9 @@ import ToggleProjectStarService from '../../services/toggle-project-star.service
 @Component({
     selector: 'project-listing',
     standalone: true,
-    imports: [AsyncPipe, JsonPipe, ReactiveFormsModule],
+    imports: [AsyncPipe, JsonPipe, ReactiveFormsModule, DatePipe],
     templateUrl: './project-listing.component.html',
+    styleUrl: './project-listing.component.scss'
 })
 export class ProjectListingComponent {
     private readonly _getProjectsService = inject(GetProjectsService)
