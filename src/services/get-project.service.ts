@@ -1,5 +1,6 @@
 import { inject, Injectable } from "@angular/core";
 import ProjectRepository from "../repositories/project.repository";
+import ImageVO from "../value-objecs/image";
 
 @Injectable({ providedIn: 'root' })
 export default class GetProjectService {
@@ -25,6 +26,6 @@ interface Output {
     costumer: string
     startDate: Date
     endDate: Date
-    coverImg: File
+    coverImg: ImageVO
     isStarred: boolean
 }

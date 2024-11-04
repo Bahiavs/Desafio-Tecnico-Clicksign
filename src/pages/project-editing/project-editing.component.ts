@@ -4,11 +4,13 @@ import GetProjectService from '../../services/get-project.service';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import EditProjectService from '../../services/edit-project.service';
 import { Subscription } from 'rxjs';
+import ImageVO from '../../value-objecs/image';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'project-editing',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, AsyncPipe],
     templateUrl: './project-editing.component.html',
 })
 export class ProjectEditingComponent implements OnInit {
@@ -23,6 +25,7 @@ export class ProjectEditingComponent implements OnInit {
     readonly startDateControl = new FormControl<Date>(new Date())
     readonly endDateControl = new FormControl<Date>(new Date())
     readonly coverImgControl = new FormControl<File | null>(null)
+    img = new ImageVO(new File([''], ''))
 
     ngOnInit() {
         const subscription = this._activatedRoute.paramMap.subscribe(params => {
@@ -32,6 +35,7 @@ export class ProjectEditingComponent implements OnInit {
             this.costumerControl.setValue(project.costumer)
             this.startDateControl.setValue(project.startDate)
             this.endDateControl.setValue(project.endDate)
+            this.img = project.coverImg
         });
         this._subscriptions.add(subscription)
     }

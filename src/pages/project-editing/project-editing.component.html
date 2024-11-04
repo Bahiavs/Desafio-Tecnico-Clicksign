@@ -8,7 +8,10 @@
 <input type="date" [formControl]="startDateControl">
 <div>Data Final (obrigatorio)</div>
 <input type="date" [formControl]="endDateControl">
+
 <div>Capa do projeto</div>
-<input type="file" accept="image/png, image/jpeg" />
+<input type="file" accept=".jpg,.jpeg,.png" />
+<img [src]="img.getImgUrl$ | async" alt="Image Preview" style="max-width: 300px; max-height: 300px;" />
 <button>🗑️</button>
+
 <button (click)="editProject()">Salvar projeto</button>

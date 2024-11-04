@@ -1,6 +1,7 @@
 import { inject, Injectable } from "@angular/core";
 import ProjectRepository from "../repositories/project.repository";
 import { BehaviorSubject, Observable } from "rxjs";
+import ImageVO from "../value-objecs/image";
 
 @Injectable({ providedIn: 'root' })
 export default class GetProjectsService {
@@ -15,7 +16,7 @@ export default class GetProjectsService {
             costumer: project.getCostumer(),
             startDate: project.getStartDate(),
             endDate: project.getEndDate(),
-            coverImg: project.getCoverImgUrl$(),
+            coverImg: project.getCoverImg(),
             isStarred: project.getIsStarred()
         }))
         this._projects$.next(output)
@@ -29,6 +30,6 @@ interface Output {
     costumer: string
     startDate: Date
     endDate: Date
-    coverImg: Observable<string | ArrayBuffer | null | undefined>
+    coverImg: ImageVO
     isStarred: boolean
 }
