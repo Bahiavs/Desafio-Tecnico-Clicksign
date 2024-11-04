@@ -5,6 +5,8 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { combineLatest, map, startWith } from 'rxjs';
 import { Router } from '@angular/router';
 import DeleteProjectService from '../../services/delete-project.service';
+import { Dialog } from '@angular/cdk/dialog';
+import { DeleteDialogConfirmationDialogComponent } from '../../components/delete-project-confirmation-dialog/delete-project-confirmation-dialog.component';
 
 @Component({
     selector: 'project-listing',
@@ -13,8 +15,9 @@ import DeleteProjectService from '../../services/delete-project.service';
     templateUrl: './project-listing.component.html',
 })
 export class ProjectListingComponent {
-    private readonly _deleteProject = inject(DeleteProjectService)
     private readonly _getProjectsService = inject(GetProjectsService)
+    private readonly _dialog = inject(Dialog)
+    private readonly _router = inject(Router)
     readonly projects$ = this._getProjectsService.execute()
     readonly filterTextControl = new FormControl('')
     readonly filterStarredControl = new FormControl(false)
@@ -45,13 +48,16 @@ export class ProjectListingComponent {
             return filteredProjects
         })
     )
-    private readonly _router = inject(Router)
 
     onEditproject(id: string) { this._router.navigate(['/editing', id]) }
-    
-    deleteProject(id: string) { 
-        this._deleteProject.execute(id)
-        this._getProjectsService.execute()
+
+    deleteProject(id: string, name: string) {
+        const data = { id, name }
+        const dialog = this._dialog.open(DeleteDialogConfirmationDialogComponent, { data })
+        dialog.closed.subscribe(deletionHappened => {
+            if (!deletionHappened) return
+            this._getProjectsService.execute()
+        })
     }
 
     openProjectCreationPage() { this._router.navigate(['/creation']) }
