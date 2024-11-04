@@ -24,7 +24,7 @@ export class ProjectEditingComponent implements OnInit {
     readonly costumerControl = new FormControl('')
     readonly startDateControl = new FormControl<Date>(new Date())
     readonly endDateControl = new FormControl<Date>(new Date())
-    readonly coverImgControl = new FormControl<File | null>(null)
+    readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
     img = new ImageVO(new File([''], ''))
 
     ngOnInit() {
@@ -55,5 +55,23 @@ export class ProjectEditingComponent implements OnInit {
             endDate: this.endDateControl.value!,
             coverImg: this.coverImgControl.value!,
         })
+    }
+
+    setFile(event: Event) {
+        const input = event.target as HTMLInputElement
+        if (!input.files) return
+        if (input.files.length === 0) return
+        const file = input.files[0]
+        this.coverImgControl.setValue(file)
+        this.img = new ImageVO(file)
+    }
+
+    private _fileTypeValidator(control: any): { [key: string]: boolean } | null {
+        if (!control.value) return null
+        if (!control.value.length) return null
+        const file: File = control.value[0]
+        const validTypes = ['image/jpeg', 'image/png']
+        if (validTypes.indexOf(file.type) !== -1) return null
+        return { invalidFileType: true }
     }
 }

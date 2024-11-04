@@ -2,11 +2,13 @@ import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import CreateProjectService from '../../services/create-project.service';
+import ImageVO from '../../value-objecs/image';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
     selector: 'project-creation',
     standalone: true,
-    imports: [ReactiveFormsModule],
+    imports: [ReactiveFormsModule, AsyncPipe],
     templateUrl: './project-creation.component.html',
 })
 export class ProjectCreationComponent {
@@ -17,7 +19,7 @@ export class ProjectCreationComponent {
     readonly startDateControl = new FormControl<Date>(new Date())
     readonly endDateControl = new FormControl<Date>(new Date())
     readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
-    imageUrl: string | ArrayBuffer | null | undefined = null
+    img = new ImageVO(new File([''], ''))
 
     returnToListingPage() { this._router.navigate(['/']) }
 
@@ -37,13 +39,7 @@ export class ProjectCreationComponent {
         if (input.files.length === 0) return
         const file = input.files[0]
         this.coverImgControl.setValue(file)
-        this._previewImage(file)
-    }
-
-    private _previewImage(file: File) {
-        const reader = new FileReader()
-        reader.onload = (e) => this.imageUrl = e.target?.result
-        reader.readAsDataURL(file)
+        this.img = new ImageVO(file)
     }
 
     private _fileTypeValidator(control: any): { [key: string]: boolean } | null {

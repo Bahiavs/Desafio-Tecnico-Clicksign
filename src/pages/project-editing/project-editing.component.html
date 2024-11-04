@@ -10,7 +10,7 @@
 <input type="date" [formControl]="endDateControl">
 
 <div>Capa do projeto</div>
-<input type="file" accept=".jpg,.jpeg,.png" />
+<input (change)="setFile($event)" type="file" accept=".jpg,.jpeg,.png" />
 <img [src]="img.getImgUrl$ | async" alt="Image Preview" style="max-width: 300px; max-height: 300px;" />
 <button>🗑️</button>
 
