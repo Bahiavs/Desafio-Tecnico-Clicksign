@@ -1,19 +1,26 @@
 import { inject, Injectable } from "@angular/core";
-import GetProjectsService from "./get-projects.service";
+import ProjectRepository from "../repositories/project.repository";
 
 @Injectable({ providedIn: 'root' })
 export default class GetProjectService {
-    private readonly _getProjectsService = inject(GetProjectsService)
+    private readonly _projectRepository = inject(ProjectRepository)
 
-    execute(id: string): GetProjectDTO {
-        const project = this._getProjectsService.execute().find(project => project.id === id)
-        if (!project) throw 'Id not found'
-        return project
+    execute(id: string): Output {
+        const project = this._projectRepository.get(id)
+        return {
+            id: project.id,
+            name: project.getName(),
+            costumer: project.getCostumer(),
+            startDate: project.getStartDate(),
+            endDate: project.getEndDate(),
+            coverUrl: project.getCoverUrl(),
+            isStarred: project.getIsStarred(),
+        }
     }
 }
 
-interface GetProjectDTO {
-    id: string;
+interface Output {
+    id: string
     name: string
     costumer: string
     startDate: Date

@@ -24,6 +24,10 @@ export default class ProjectRepository {
     create(project: Project) {
         this._db.insert({ id: project.id, name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverUrl: project.getCoverUrl(), isStarred: project.getIsStarred() })
     }
+    
+    delete(id: string) {
+        this._db.delete(id)
+    }
 }
 
 @Injectable({ providedIn: 'root' })
@@ -57,5 +61,9 @@ class MemoryDB {
     
     insert(data: any) {
         this._storage.push(data)
+    }
+    
+    delete(id: string) {
+        this._storage = this._storage.filter(item => item.id !== id)
     }
 }

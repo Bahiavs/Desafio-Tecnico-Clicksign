@@ -1,14 +1,15 @@
 import { inject, Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
 import ProjectRepository from "../repositories/project.repository";
+import { BehaviorSubject, Observable } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 export default class GetProjectsService {
     private readonly _projectRepository = inject(ProjectRepository)
+    private readonly _projects$ = new BehaviorSubject<Output[]>([])
 
-    execute(): Output[] {
+    execute(): Observable<Output[]>  {
         const projects = this._projectRepository.getAll()
-        return projects.map(project => ({
+        const output: Output[] =  projects.map(project => ({
             id: project.id,
             name: project.getName(),
             costumer: project.getCostumer(),
@@ -17,6 +18,8 @@ export default class GetProjectsService {
             coverUrl: project.getCoverUrl(),
             isStarred: project.getIsStarred()
         }))
+        this._projects$.next(output)
+        return this._projects$.asObservable()
     }
 }
 

@@ -4,6 +4,7 @@ import { AsyncPipe, JsonPipe } from "@angular/common";
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import { combineLatest, map, startWith } from 'rxjs';
 import { Router } from '@angular/router';
+import DeleteProjectService from '../../services/delete-project.service';
 
 @Component({
     selector: 'project-listing',
@@ -12,17 +13,20 @@ import { Router } from '@angular/router';
     templateUrl: './project-listing.component.html',
 })
 export class ProjectListingComponent {
-    readonly projects = inject(GetProjectsService).execute()
+    private readonly _deleteProject = inject(DeleteProjectService)
+    private readonly _getProjectsService = inject(GetProjectsService)
+    readonly projects$ = this._getProjectsService.execute()
     readonly filterTextControl = new FormControl('')
     readonly filterStarredControl = new FormControl(false)
     readonly assortmentControl = new FormControl<'alphabetical' | 'mostRecentStarted' | 'closerToCompletionDate'>('alphabetical')
     readonly filteredProjects$ = combineLatest([
+        this.projects$,
         this.filterTextControl.valueChanges.pipe(startWith(this.filterTextControl.value)),
         this.filterStarredControl.valueChanges.pipe(startWith(this.filterStarredControl.value)),
         this.assortmentControl.valueChanges.pipe(startWith(this.assortmentControl.value)),
     ]).pipe(
-        map(([filterText, isFilteringStarred, assortment]) => {
-            let filteredProjects = this.projects.filter(project => {
+        map(([projects, filterText, isFilteringStarred, assortment]) => {
+            let filteredProjects = projects.filter(project => {
                 if (isFilteringStarred && !project.isStarred) return false
                 if (!project.name.includes(filterText!)) return false
                 return true
@@ -45,5 +49,10 @@ export class ProjectListingComponent {
 
     onEditproject(id: string) { this._router.navigate(['/editing', id]) }
     
+    deleteProject(id: string) { 
+        this._deleteProject.execute(id)
+        this._getProjectsService.execute()
+    }
+
     openProjectCreationPage() { this._router.navigate(['/creation']) }
 }

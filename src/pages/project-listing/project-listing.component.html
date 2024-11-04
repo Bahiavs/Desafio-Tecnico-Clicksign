@@ -2,7 +2,7 @@
 
 <input [formControl]="filterTextControl" type="text" placeholder="Digite o nome do projeto..." />
 @if (filteredProjects?.length) {
-<span>Projetos ({{projects.length}})</span>
+<span>Projetos ({{(projects$ | async)?.length}})</span>
 <input [formControl]="filterStarredControl" type="checkbox" />
 <span>Apenas Favoritos</span>
 <select [formControl]="assortmentControl">
@@ -14,6 +14,7 @@
 @for (project of filteredProjects; track $index) {
 <pre>{{project | json}}</pre>
 <button (click)="onEditproject(project.id)">✏️ Editar</button>
+<button (click)="deleteProject(project.id)">🗑️ Remover</button>
 }} @else {
 <div>Nenhum projeto</div>
 <div>Clique no botão abaixo para criar o primeiro e gerenciá-lo.</div>
