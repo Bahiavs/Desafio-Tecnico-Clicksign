@@ -26,6 +26,6 @@ interface Output {
     costumer: string
     startDate: Date
     endDate: Date
-    coverImg: ImageVO
+    coverImg: ImageVO | null
     isStarred: boolean
 }

@@ -25,7 +25,7 @@ export class ProjectEditingComponent implements OnInit {
     readonly startDateControl = new FormControl<Date>(new Date())
     readonly endDateControl = new FormControl<Date>(new Date())
     readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
-    img = new ImageVO(new File([''], ''))
+    img: null | ImageVO = null
 
     ngOnInit() {
         const subscription = this._activatedRoute.paramMap.subscribe(params => {

@@ -19,18 +19,22 @@ export class ProjectCreationComponent {
     readonly startDateControl = new FormControl<string | null>(null)
     readonly endDateControl = new FormControl<string | null>(null)
     readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
-    img = new ImageVO(new File([''], ''))
+    img: ImageVO | null = null
 
     returnToListingPage() { this._router.navigate(['/']) }
 
     createProject() {
         try {
+            if (!this.nameControl.value) throw new Error('Nome do projeto inválido')
+            if (!this.costumerControl.value) throw new Error('Cliente inválido')
+            if (!this.startDateControl.value) throw new Error('Data de início inválida')
+            if (!this.endDateControl.value) throw new Error('Data final inválida')
             this._createProject.execute({
-                name: this.nameControl.value!,
-                costumer: this.costumerControl.value!,
-                startDate: new Date(this.startDateControl.value!),
-                endDate: new Date(this.endDateControl.value!),
-                coverImg: this.coverImgControl.value!,
+                name: this.nameControl.value,
+                costumer: this.costumerControl.value,
+                startDate: new Date(this.startDateControl.value),
+                endDate: new Date(this.endDateControl.value),
+                coverImg: this.coverImgControl.value,
             })
             alert('Criado com sucesso!')
         } catch (error) {
@@ -45,6 +49,11 @@ export class ProjectCreationComponent {
         const file = input.files[0]
         this.coverImgControl.setValue(file)
         this.img = new ImageVO(file)
+    }
+
+    removeCoverImg() {
+        this.coverImgControl.setValue(null)
+        this.img = null
     }
 
     private _fileTypeValidator(control: any): { [key: string]: boolean } | null {

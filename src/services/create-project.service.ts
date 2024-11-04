@@ -17,5 +17,5 @@ interface Input {
     costumer: string
     startDate: Date
     endDate: Date
-    coverImg: File
+    coverImg: File | null
 }

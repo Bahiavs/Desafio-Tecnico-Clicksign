@@ -1,4 +1,3 @@
-import { Observable } from "rxjs"
 import ImageVO from "../value-objecs/image"
 
 export default class Project {
@@ -7,9 +6,9 @@ export default class Project {
         private _costumer: string,
         private _startDate: Date,
         private _endDate: Date,
-        private _coverImg: ImageVO,
+        private _coverImg: ImageVO | null,
         private _isStarred: boolean,
-    ) { 
+    ) {
         const isNameValid = () => {
             if (_name.length === 0) return false
             return true
@@ -22,21 +21,21 @@ export default class Project {
             if (_endDate.getTime() - _startDate.getTime() <= 0) return false
             return true
         }
-        
+
         if (!isNameValid()) throw new Error('Invalid name')
         if (!isCostumerValid()) throw new Error('Invalid costumer')
         if (!areDatesValid()) throw new Error('Invalid dates')
     }
 
-    static create(name: string, costumer: string, startDate: Date, endDate: Date, coverImg: File): Project {
+    static create(name: string, costumer: string, startDate: Date, endDate: Date, coverImg: File | null = null): Project {
         const id = crypto.randomUUID()
         const isStarred = false
-        const img = new ImageVO(coverImg)
+        const img = coverImg ? new ImageVO(coverImg) : null
         return new Project(id, name, costumer, startDate, endDate, img, isStarred)
     }
-    
-    static restore(id: string, name: string, costumer: string, startDate: Date, endDate: Date, coverImg: File, isStarred: boolean): Project {
-        const img = new ImageVO(coverImg)
+
+    static restore(id: string, name: string, costumer: string, startDate: Date, endDate: Date, coverImg: File | null, isStarred: boolean): Project {
+        const img = coverImg ? new ImageVO(coverImg) : null
         return new Project(id, name, costumer, startDate, endDate, img, isStarred)
     }
 

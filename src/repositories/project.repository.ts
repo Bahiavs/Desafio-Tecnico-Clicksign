@@ -19,11 +19,11 @@ export default class ProjectRepository {
     }
 
     update(project: Project) {
-        this._db.update(project.id, { name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverImg: project.getCoverImg().file, isStarred: project.getIsStarred() })
+        this._db.update(project.id, { name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverImg: project.getCoverImg()?.file ?? null, isStarred: project.getIsStarred() })
     }
 
     create(project: Project) {
-        this._db.insert({ id: project.id, name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverImg: project.getCoverImg().file, isStarred: project.getIsStarred() })
+        this._db.insert({ id: project.id, name: project.getName(), costumer: project.getCostumer(), startDate: project.getStartDate(), endDate: project.getEndDate(), coverImg: project.getCoverImg()?.file ?? null, isStarred: project.getIsStarred() })
     }
 
     delete(id: string) {
