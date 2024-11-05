@@ -1,17 +1,24 @@
 @let filteredProjects = (filteredProjects$ | async);
 
-<input [formControl]="filterTextControl" type="text" placeholder="Digite o nome do projeto..." />
+<input [formControl]="filterTextControl" id="filter" type="text" placeholder="Digite o nome do projeto..." />
 @if ((projects$ | async)?.length) {
-    <span id="page-title">Projetos</span>
-    <span id="project-amount">({{(projects$ | async)?.length}})</span>
-    <input [formControl]="filterStarredControl" type="checkbox" />
-    <span id="only-star">Apenas Favoritos</span>
+    <div id="title-ctn">
+        <span id="page-title">Projetos</span>
+        <span id="project-amount">({{(projects$ | async)?.length}})</span>
+    </div>
+    <div>
+        <input [formControl]="filterStarredControl" type="checkbox" />
+        <span id="only-star">Apenas Favoritos</span>
+    </div>
     <select [formControl]="assortmentControl" id="sort-select">
         <option value="alphabetical">Ordem Alfabética</option>
         <option value="mostRecentStarted">Iniciados mais recentemente</option>
         <option value="closerToCompletionDate">Próximos à data de finalização</option>
     </select>
-    <button (click)="openProjectCreationPage()">+ Novo projeto</button>
+    <button id="new-project-btn" (click)="openProjectCreationPage()">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8V16" stroke="white" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 12H16" stroke="white" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Novo projeto
+    </button>
     <div id="card-ctn">
     @for (project of filteredProjects; track $index) {
         <div class="card">

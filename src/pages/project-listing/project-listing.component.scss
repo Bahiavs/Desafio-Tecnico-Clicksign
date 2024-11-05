@@ -1,7 +1,18 @@
 :host {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 0 2rem;
+    flex-wrap: wrap;
     background-color: #f4f2ff;
     padding: 2rem; // tmp
+}
+
+#filter {
+    flex-basis: 100%;
+}
+
+#title-ctn {
+    margin-right: auto;
 }
 
 #page-title {
@@ -41,7 +52,27 @@
     font-weight: 400;
 }
 
+#new-project-btn {
+    // font-family: Encode Sans Semi Expanded;
+    // line-height: 24px;
+    width: 184px;
+    height: 40px;
+    border-radius: 26px;
+    background-color: #695CCD;
+    font-size: 16px;
+    font-weight: 400;
+    color: #FFFFFF;
+    padding: 0;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
 #card-ctn {
+    margin-top: 22px;
+    flex-basis: 100%;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 21.625rem), 1fr));
     gap: 2rem;
