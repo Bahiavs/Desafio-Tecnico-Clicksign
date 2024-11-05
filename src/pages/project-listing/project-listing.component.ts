@@ -9,11 +9,12 @@ import { DeleteDialogConfirmationDialogComponent } from '../../components/delete
 import ToggleProjectStarService from '../../services/toggle-project-star.service';
 import { MenuButtonComponent } from '../../components/menu-button/menu-button.component';
 import { StarToggleComponent } from '../../components/star-toggle/star-toggle.component';
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
     selector: 'project-listing',
     standalone: true,
-    imports: [AsyncPipe, JsonPipe, ReactiveFormsModule, DatePipe, MenuButtonComponent, StarToggleComponent],
+    imports: [AsyncPipe, JsonPipe, ReactiveFormsModule, DatePipe, MenuButtonComponent, StarToggleComponent, HeaderComponent],
     templateUrl: './project-listing.component.html',
     styleUrl: './project-listing.component.scss'
 })
@@ -52,6 +53,7 @@ export class ProjectListingComponent {
             return filteredProjects
         })
     )
+    isSearchingActivated = false
 
     onEditproject(id: string) { this._router.navigate(['/editing', id]) }
 
@@ -70,4 +72,8 @@ export class ProjectListingComponent {
     }
 
     openProjectCreationPage() { this._router.navigate(['/creation']) }
+
+    activeSearch() {
+        this.isSearchingActivated = true
+    }
 }

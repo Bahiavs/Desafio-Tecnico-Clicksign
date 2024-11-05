@@ -1,6 +1,7 @@
 :root {
-    background-color: #1c1930;
+    background-color: #f4f2ff;
     height: 100%;
     color: rgba(0, 0, 0, 0.8); // todo remover
     font-family: Arial; // todo change
+    --max-width: min(1860px, 100% - 4rem)
 }

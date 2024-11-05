@@ -1,18 +1,31 @@
-:host {
-    display: flex;
-    align-items: center;
-    gap: 0 2rem;
-    flex-wrap: wrap;
-    background-color: #f4f2ff;
-    padding: 2rem; // tmp
+#filter {
+    height: 80px;
+    box-sizing: border-box;
+    border-radius: 1rem;
+    border: 2px solid #695CCD;
+    outline: none;
 }
 
-#filter {
-    flex-basis: 100%;
+#control-ctn {
+    margin-top: 60px;
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    width: var(--max-width);
+    margin-inline: auto;
 }
 
 #title-ctn {
     margin-right: auto;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+#star-filter-ctn {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
 }
 
 #page-title {
@@ -71,11 +84,12 @@
 }
 
 #card-ctn {
-    margin-top: 22px;
-    flex-basis: 100%;
+    padding: 22px 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 21.625rem), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 21.625rem), 1fr));
     gap: 2rem;
+    width: var(--max-width);
+    margin-inline: auto;
 }
 
 .card {

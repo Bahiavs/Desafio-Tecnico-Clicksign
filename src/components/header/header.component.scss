@@ -1,0 +1,25 @@
+:host {
+    display: block;
+    background-color: #1c1930;
+    width: 100%;
+}
+
+#ctn {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas: ". logo input";
+    align-items: center;
+    justify-items: end;
+    gap: 1rem;
+    width: var(--max-width);
+    margin-inline: auto;
+}
+
+svg {
+    grid-area: logo;
+    padding: 4px 0;
+}
+
+#input-ctn {
+    grid-area: input;
+}
