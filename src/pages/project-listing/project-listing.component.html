@@ -2,10 +2,11 @@
 
 <input [formControl]="filterTextControl" type="text" placeholder="Digite o nome do projeto..." />
 @if ((projects$ | async)?.length) {
-    <span>Projetos ({{(projects$ | async)?.length}})</span>
+    <span id="page-title">Projetos</span>
+    <span id="project-amount">({{(projects$ | async)?.length}})</span>
     <input [formControl]="filterStarredControl" type="checkbox" />
-    <span>Apenas Favoritos</span>
-    <select [formControl]="assortmentControl">
+    <span id="only-star">Apenas Favoritos</span>
+    <select [formControl]="assortmentControl" id="sort-select">
         <option value="alphabetical">Ordem Alfabética</option>
         <option value="mostRecentStarted">Iniciados mais recentemente</option>
         <option value="closerToCompletionDate">Próximos à data de finalização</option>

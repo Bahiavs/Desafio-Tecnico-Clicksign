@@ -4,6 +4,43 @@
     padding: 2rem; // tmp
 }
 
+#page-title {
+    // font-family: Encode Sans Semi Expanded;
+    // line-height: 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1F1283;
+}
+
+#project-amount {
+    // font-family: Encode Sans Semi Expanded;
+    // line-height: 21.25px;
+    font-size: 1.0625rem;
+    font-weight: 400;
+    color: #695CCD;
+}
+
+#only-star {
+    // font-family: Encode Sans Semi Expanded;
+    // line-height: 22px;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #1E1E1E;
+}
+
+#sort-select {
+    // font-family: Encode Sans Semi Expanded;
+    // line-height: 18px;
+    width: 296px;
+    height: 40px;
+    border-radius: 8px;
+    border: 1px solid #717171;
+    outline: none;
+    color: #1C1930;
+    font-size: 16px;
+    font-weight: 400;
+}
+
 #card-ctn {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 21.625rem), 1fr));
