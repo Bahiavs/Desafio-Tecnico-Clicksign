@@ -1,0 +1,19 @@
+:host {
+    // display: block;
+    // background-color: tomato;
+}
+
+app-header {
+    margin-bottom: 67px;
+}
+
+#return-btn {
+    // font-family: Encode Sans Semi Expanded;
+    // line-height: 20px;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    color: #695CCD;
+}

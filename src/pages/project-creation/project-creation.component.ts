@@ -4,12 +4,14 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import CreateProjectService from '../../services/create-project.service';
 import ImageVO from '../../value-objecs/image';
 import { AsyncPipe } from '@angular/common';
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
     selector: 'project-creation',
     standalone: true,
-    imports: [ReactiveFormsModule, AsyncPipe],
+    imports: [ReactiveFormsModule, AsyncPipe, HeaderComponent],
     templateUrl: './project-creation.component.html',
+    styleUrl: 'project-creation.component.scss'
 })
 export class ProjectCreationComponent {
     private readonly _createProject = inject(CreateProjectService)
