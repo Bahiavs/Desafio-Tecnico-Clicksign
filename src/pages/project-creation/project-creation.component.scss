@@ -1,7 +1,11 @@
+#body {
+    margin: 67px var(--margin) 0 var(--margin);
+    padding-bottom: var(--margin);
+}
+
 #return-btn {
     // font-family: Encode Sans Semi Expanded;
     // line-height: 20px;
-    margin-top: 67px;
     display: flex;
     align-items: center;
     gap: .5rem;

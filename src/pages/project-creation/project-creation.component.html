@@ -1,31 +1,33 @@
 <app-header />
-<a (click)="returnToListingPage()" id="return-btn">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.6666 8H3.33325" stroke="#695CCD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.99992 12.6667L3.33325 8L7.99992 3.33333" stroke="#695CCD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Voltar
-</a>
-<div id="new-project">Novo projeto</div>
-<div id="form-section">
-    <div id="form-ctn">
-        <div id="name-input">
-            <label>Nome do projeto <span>(obrigatorio)</span></label>
-            <input type="text" [formControl]="nameControl">
+<div id="body">
+    <a (click)="returnToListingPage()" id="return-btn">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12.6666 8H3.33325" stroke="#695CCD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M7.99992 12.6667L3.33325 8L7.99992 3.33333" stroke="#695CCD" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Voltar
+    </a>
+    <div id="new-project">Novo projeto</div>
+    <div id="form-section">
+        <div id="form-ctn">
+            <div id="name-input">
+                <label>Nome do projeto <span>(obrigatorio)</span></label>
+                <input type="text" [formControl]="nameControl">
+            </div>
+            <div id="costumer-input">
+                <label>Cliente <span>(obrigatorio)</span></label>
+                <input type="text" [formControl]="costumerControl">
+            </div>
+            <div id="start-date-input">
+                <label>Data de Início <span>(obrigatorio)</span></label>
+                <input type="date" [formControl]="startDateControl">
+            </div>
+            <div id="end-date-input">
+                <label>Data Final <span>(obrigatorio)</span></label>
+                <input type="date" [formControl]="endDateControl">
+            </div>
+            <div>
+                <label>Capa do projeto</label>
+                <upload-input (image$)="onChangeCoverImg($event)"></upload-input>
+            </div>
+            <button (click)="createProject()" [disabled]="!(canSave$ | async)" id="save-btn">Salvar projeto</button>
         </div>
-        <div id="costumer-input">
-            <label>Cliente <span>(obrigatorio)</span></label>
-            <input type="text" [formControl]="costumerControl">
-        </div>
-        <div id="start-date-input">
-            <label>Data de Início <span>(obrigatorio)</span></label>
-            <input type="date" [formControl]="startDateControl">
-        </div>
-        <div id="end-date-input">
-            <label>Data Final <span>(obrigatorio)</span></label>
-            <input type="date" [formControl]="endDateControl">
-        </div>
-        <div>
-            <label>Capa do projeto</label>
-            <upload-input (image$)="onChangeCoverImg($event)"></upload-input>
-        </div>
-        <button (click)="createProject()" [disabled]="!(canSave$ | async)" id="save-btn">Salvar projeto</button>
     </div>
 </div>
