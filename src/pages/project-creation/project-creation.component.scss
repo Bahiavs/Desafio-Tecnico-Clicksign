@@ -1,19 +1,157 @@
-:host {
-    // display: block;
-    // background-color: tomato;
-}
-
-app-header {
-    margin-bottom: 67px;
-}
-
 #return-btn {
     // font-family: Encode Sans Semi Expanded;
     // line-height: 20px;
+    margin-top: 67px;
     display: flex;
     align-items: center;
     gap: .5rem;
     font-size: 1rem;
     font-weight: 400;
     color: #695CCD;
+}
+
+#new-project {
+    // font-family: Encode Sans Semi Expanded;
+    // line-height: 30px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1F1283;
+    margin-top: .5rem;
+}
+
+#form-section {
+    margin-top: 33px;
+    border: 1px solid #DCDCDC;
+    border-radius: .5rem;
+    padding: 52px;
+    box-sizing: border-box;
+}
+
+#form-ctn {
+    max-width: 704px;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px 40px;
+
+    &>* {
+        flex-grow: 1;
+    }
+}
+
+#name-input {
+    flex-basis: 100%;
+
+    &>input {
+        margin-top: .25rem;
+    }
+}
+
+#costumer-input {
+    flex-basis: 100%;
+
+    &>input {
+        margin-top: .25rem;
+    }
+}
+
+#start-date-input {
+    flex-basis: 40%;
+
+    &>input {
+        margin-top: .25rem;
+    }
+}
+
+#end-date-input {
+    flex-basis: 40%;
+
+    &>input {
+        margin-top: .25rem;
+    }
+}
+
+#file-input {
+    margin-top: .25rem;
+    flex-basis: 100%;
+    border-radius: .25rem;
+    border: 1px dashed #717171;
+    padding: 1.5rem;
+    display: grid;
+    place-items: center;
+
+    #tutorial-text {
+        margin-top: 1rem;
+        margin-bottom: 1.5rem;
+        // font-family: Encode Sans Semi Expanded;
+        line-height: 22px;
+        font-size: 16px;
+        font-weight: 400;
+        color: #717171;
+    }
+
+    #select-img-btn {
+        // font-family: Encode Sans Semi Expanded;
+        width: 144px;
+        height: 40px;
+        border-radius: 26px;
+        border: 1px solid #695CCD;
+        line-height: 24px;
+        font-size: 1rem;
+        font-weight: 400;
+        text-align: center;
+        color: #695CCD;
+        background-color: white;
+    }
+
+    input {
+        display: none;
+    }
+
+    img {
+        display: none;
+    }
+
+    #remove-img {
+        display: none;
+    }
+}
+
+#save-btn {
+    // font-family: Encode Sans Semi Expanded;
+    // line-height: 22px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: 400;
+    flex-basis: 100%;
+    height: 52px;
+    border-radius: 26px;
+    background-color: #B2A8FF;
+    border: none;
+    color: white;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+label {
+    // font-family: Encode Sans Semi Expanded;
+    // line-height: 22px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #695CCD;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .5rem;
+
+    &>span {
+        // font-family: Encode Sans Semi Expanded;
+        // line-height: 22px;
+        font-size: 14px;
+        font-weight: 400;
+        color: #717171;
+    }
 }
