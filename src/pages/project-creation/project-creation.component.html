@@ -26,6 +26,6 @@
             <label>Capa do projeto</label>
             <upload-input (image$)="onChangeCoverImg($event)"></upload-input>
         </div>
-        <button id="save-btn" (click)="createProject()">Salvar projeto</button>
+        <button (click)="createProject()" [disabled]="!(canSave$ | async)" id="save-btn">Salvar projeto</button>
     </div>
 </div>

@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import CreateProjectService from '../../services/create-project.service';
 import ImageVO from '../../value-objecs/image';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { HeaderComponent } from "../../components/header/header.component";
 import { UploadInputComponent } from "../../components/upload-input/upload-input";
+import { combineLatest, map, startWith } from 'rxjs';
 
 @Component({
     selector: 'project-creation',
@@ -17,11 +18,25 @@ import { UploadInputComponent } from "../../components/upload-input/upload-input
 export class ProjectCreationComponent {
     private readonly _createProject = inject(CreateProjectService)
     private readonly _router = inject(Router)
-    readonly nameControl = new FormControl('')
-    readonly costumerControl = new FormControl('')
-    readonly startDateControl = new FormControl<string | null>(null)
-    readonly endDateControl = new FormControl<string | null>(null)
+    readonly nameControl = new FormControl('', Validators.nullValidator)
+    readonly costumerControl = new FormControl('', Validators.nullValidator)
+    readonly startDateControl = new FormControl<string | null>(null, Validators.nullValidator)
+    readonly endDateControl = new FormControl<string | null>(null, Validators.nullValidator)
     readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
+    readonly canSave$ = combineLatest([
+        this.nameControl.statusChanges.pipe(startWith(this.nameControl.status)),
+        this.costumerControl.statusChanges.pipe(startWith(this.costumerControl.status)),
+        this.startDateControl.statusChanges.pipe(startWith(this.startDateControl.status)),
+        this.endDateControl.statusChanges.pipe(startWith(this.endDateControl.status)),
+        this.coverImgControl.statusChanges.pipe(startWith(this.coverImgControl.status)),
+    ]).pipe(map(([nameStatus, costumerStatus, startDateStatus, endDateStatus, coverImgStatus]) => {
+        if (nameStatus !== 'VALID') return false
+        if (costumerStatus !== 'VALID') return false
+        if (startDateStatus !== 'VALID') return false
+        if (endDateStatus !== 'VALID') return false
+        if (coverImgStatus !== 'VALID') return false
+        return true
+    }))
     img: ImageVO | null = null
 
     returnToListingPage() { this._router.navigate(['/']) }
