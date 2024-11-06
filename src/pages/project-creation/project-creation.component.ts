@@ -3,13 +3,13 @@ import { Router } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import CreateProjectService from '../../services/create-project.service';
 import ImageVO from '../../value-objecs/image';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
     selector: 'project-creation',
     standalone: true,
-    imports: [ReactiveFormsModule, AsyncPipe, HeaderComponent],
+    imports: [ReactiveFormsModule, AsyncPipe, HeaderComponent, NgClass],
     templateUrl: './project-creation.component.html',
     styleUrl: 'project-creation.component.scss'
 })
