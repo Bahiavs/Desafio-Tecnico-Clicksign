@@ -18,10 +18,10 @@ import { combineLatest, map, startWith } from 'rxjs';
 export class ProjectCreationComponent {
     private readonly _createProject = inject(CreateProjectService)
     private readonly _router = inject(Router)
-    readonly nameControl = new FormControl('', Validators.nullValidator)
-    readonly costumerControl = new FormControl('', Validators.nullValidator)
-    readonly startDateControl = new FormControl<string | null>(null, Validators.nullValidator)
-    readonly endDateControl = new FormControl<string | null>(null, Validators.nullValidator)
+    readonly nameControl = new FormControl('', Validators.required)
+    readonly costumerControl = new FormControl('', Validators.required)
+    readonly startDateControl = new FormControl<string | null>(null, Validators.required)
+    readonly endDateControl = new FormControl<string | null>(null, Validators.required)
     readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
     readonly canSave$ = combineLatest([
         this.nameControl.statusChanges.pipe(startWith(this.nameControl.status)),
