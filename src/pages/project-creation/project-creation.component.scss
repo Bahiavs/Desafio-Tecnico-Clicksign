@@ -132,8 +132,40 @@
 }
 
 input {
+    // font-family: Encode Sans Semi Expanded;
     width: 100%;
     box-sizing: border-box;
+    height: 40px;
+    border-radius: .5rem;
+    border: 1px solid #717171;
+    background-color: white;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 22px;
+    color: #1C1930;
+    position: relative;
+
+    // &::after {
+    //     content: '';
+    //     width: 24px;
+    //     height: 100%;
+    //     // inset: 7px 7px 7px 90%;
+    //     background-image: url('../../../public/calendar-check-light.svg');
+    //     background-repeat: no-repeat;
+    //     background-position: center;
+    //     background-color: white;
+    //     display: block;
+    //     position: absolute;
+    //     top: 50%;
+    //     transform: translateY(-50%);
+    //     padding-right: 10px;
+    //     right: 0;
+    // }
+
+    // &::-webkit-calendar-picker-indicator {
+    //     display: none;
+    // }
 }
 
 label {
