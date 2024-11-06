@@ -5,11 +5,12 @@ import CreateProjectService from '../../services/create-project.service';
 import ImageVO from '../../value-objecs/image';
 import { AsyncPipe, NgClass } from '@angular/common';
 import { HeaderComponent } from "../../components/header/header.component";
+import { UploadInputComponent } from "../../components/upload-input/upload-input";
 
 @Component({
     selector: 'project-creation',
     standalone: true,
-    imports: [ReactiveFormsModule, AsyncPipe, HeaderComponent, NgClass],
+    imports: [ReactiveFormsModule, AsyncPipe, HeaderComponent, NgClass, UploadInputComponent],
     templateUrl: './project-creation.component.html',
     styleUrl: 'project-creation.component.scss'
 })
@@ -44,18 +45,9 @@ export class ProjectCreationComponent {
         }
     }
 
-    setFile(event: Event) {
-        const input = event.target as HTMLInputElement
-        if (!input.files) return
-        if (input.files.length === 0) return
-        const file = input.files[0]
-        this.coverImgControl.setValue(file)
-        this.img = new ImageVO(file)
-    }
-
-    removeCoverImg() {
-        this.coverImgControl.setValue(null)
-        this.img = null
+    onChangeCoverImg(img: File | null) {
+        console.log(img);
+        this.coverImgControl.setValue(img)
     }
 
     private _fileTypeValidator(control: any): { [key: string]: boolean } | null {
