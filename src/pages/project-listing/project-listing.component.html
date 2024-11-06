@@ -1,9 +1,11 @@
 @let filteredProjects = (filteredProjects$ | async);
 
 @if (isSearchingActivated) {<input [formControl]="filterTextControl" id="filter" type="text" placeholder="Digite o nome do projeto..." />}
-@else {<app-header>
-    <svg (click)="activeSearch()" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 19L14.65 14.65" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>    
-</app-header>}
+@else {
+    <app-header>
+        <svg (click)="activeSearch()" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M9 17C13.4183 17 17 13.4183 17 9C17 4.58172 13.4183 1 9 1C4.58172 1 1 4.58172 1 9C1 13.4183 4.58172 17 9 17Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 19L14.65 14.65" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>    
+    </app-header>
+}
 
 @if ((projects$ | async)?.length) {
     <div id="control-ctn">
@@ -54,7 +56,12 @@
     }
     </div>
 } @else {
-    <div>Nenhum projeto</div>
-    <div>Clique no botão abaixo para criar o primeiro e gerenciá-lo.</div>
-    <button (click)="openProjectCreationPage()">+ Novo projeto</button>
+    <div id="no-project-ctn">
+        <div>Nenhum projeto</div>
+        <div>Clique no botão abaixo para criar o primeiro e gerenciá-lo.</div>
+        <button (click)="openProjectCreationPage()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 8V16" stroke="white" stroke-linecap="round" stroke-linejoin="round"/><path d="M8 12H16" stroke="white" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Novo projeto
+        </button>
+    </div>
 }
