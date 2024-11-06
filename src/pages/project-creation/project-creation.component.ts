@@ -23,20 +23,6 @@ export class ProjectCreationComponent {
     readonly startDateControl = new FormControl<string | null>(null, Validators.required)
     readonly endDateControl = new FormControl<string | null>(null, Validators.required)
     readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
-    readonly canSave$ = combineLatest([
-        this.nameControl.statusChanges.pipe(startWith(this.nameControl.status)),
-        this.costumerControl.statusChanges.pipe(startWith(this.costumerControl.status)),
-        this.startDateControl.statusChanges.pipe(startWith(this.startDateControl.status)),
-        this.endDateControl.statusChanges.pipe(startWith(this.endDateControl.status)),
-        this.coverImgControl.statusChanges.pipe(startWith(this.coverImgControl.status)),
-    ]).pipe(map(([nameStatus, costumerStatus, startDateStatus, endDateStatus, coverImgStatus]) => {
-        if (nameStatus !== 'VALID') return false
-        if (costumerStatus !== 'VALID') return false
-        if (startDateStatus !== 'VALID') return false
-        if (endDateStatus !== 'VALID') return false
-        if (coverImgStatus !== 'VALID') return false
-        return true
-    }))
     img: ImageVO | null = null
 
     returnToListingPage() { this._router.navigate(['/']) }

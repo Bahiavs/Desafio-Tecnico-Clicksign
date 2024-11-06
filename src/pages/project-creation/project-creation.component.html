@@ -7,27 +7,43 @@
     <div id="new-project">Novo projeto</div>
     <div id="form-section">
         <div id="form-ctn">
-            <div id="name-input">
+            <div id="name-input" [ngClass]="{'invalid': nameControl.invalid && nameControl.touched}">
                 <label>Nome do projeto <span>(obrigatorio)</span></label>
                 <input type="text" [formControl]="nameControl">
+                @if (nameControl.invalid && nameControl.touched) {
+                    <div class="error-msg">Digite um nome válido</div>
+                }
             </div>
-            <div id="costumer-input">
+            <div id="costumer-input" [ngClass]="{'invalid': costumerControl.invalid && costumerControl.touched}">
                 <label>Cliente <span>(obrigatorio)</span></label>
                 <input type="text" [formControl]="costumerControl">
+                @if (costumerControl.invalid && costumerControl.touched) {
+                    <div class="error-msg">Digite um cliente válido</div>
+                }
             </div>
-            <div id="start-date-input">
+            <div id="start-date-input" [ngClass]="{'invalid': startDateControl.invalid && startDateControl.touched}">
                 <label>Data de Início <span>(obrigatorio)</span></label>
                 <input type="date" [formControl]="startDateControl">
+                @if (startDateControl.invalid && startDateControl.touched) {
+                    <div class="error-msg">Selecione uma data válida</div>
+                }
             </div>
-            <div id="end-date-input">
+            <div id="end-date-input" [ngClass]="{'invalid': endDateControl.invalid && endDateControl.touched}">
                 <label>Data Final <span>(obrigatorio)</span></label>
                 <input type="date" [formControl]="endDateControl">
+                @if (endDateControl.invalid && endDateControl.touched) {
+                    <div class="error-msg">Selecione uma data válida</div>
+                }
             </div>
             <div>
                 <label>Capa do projeto</label>
                 <upload-input (image$)="onChangeCoverImg($event)"></upload-input>
             </div>
-            <button (click)="createProject()" [disabled]="!(canSave$ | async)" id="save-btn">Salvar projeto</button>
+            <button (click)="createProject()" 
+                    [disabled]="nameControl.invalid || costumerControl.invalid || startDateControl.invalid || endDateControl.invalid || coverImgControl.invalid" 
+                    id="save-btn">
+                    Salvar projeto
+            </button>
         </div>
     </div>
 </div>
