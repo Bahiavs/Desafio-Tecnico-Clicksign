@@ -1,5 +1,5 @@
 import { AsyncPipe, NgClass } from "@angular/common";
-import { Component, EventEmitter, HostBinding, Output } from "@angular/core";
+import { Component, EventEmitter, HostBinding, Input, Output } from "@angular/core";
 import ImageVO from "../../value-objecs/image";
 
 @Component({
@@ -10,7 +10,7 @@ import ImageVO from "../../value-objecs/image";
     styleUrl: './upload-input.scss',
 })
 export class UploadInputComponent {
-    @HostBinding('class.filled') img: ImageVO | null = null
+    @Input() @HostBinding('class.filled') img: ImageVO | null = null
     @Output() image$ = new EventEmitter<File | null>()
 
     removeCoverImg() {

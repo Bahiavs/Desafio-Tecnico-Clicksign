@@ -34,8 +34,8 @@
                 <div class="card-control">
                     <button star-toggle class="start-btn" (click)="toggleProjectStar(project.id)" [active]="project.isStarred"></button>
                     <button menu-button></button>
-                    <!-- <button class="edit-btn" (click)="onEditproject(project.id)">✏️ Editar</button> -->
-                    <!-- <button class="remove-btn" (click)="deleteProject(project.id, project.name)">🗑️ Remover</button> -->
+                    <button class="edit-btn" (click)="onEditproject(project.id)">✏️ Editar</button>
+                    <button class="remove-btn" (click)="deleteProject(project.id, project.name)">🗑️ Remover</button>
                 </div>
                 <img class="cover-img" [attr.src]="project.coverImg?.getImgUrl$ | async"/>
             </div>

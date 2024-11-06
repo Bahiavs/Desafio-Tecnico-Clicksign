@@ -47,7 +47,6 @@ export class ProjectCreationComponent {
     }
 
     onChangeCoverImg(img: File | null) {
-        console.log(img);
         this.coverImgControl.setValue(img)
     }
 

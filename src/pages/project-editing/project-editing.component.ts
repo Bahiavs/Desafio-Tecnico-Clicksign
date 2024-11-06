@@ -5,13 +5,16 @@ import { FormControl, ReactiveFormsModule } from '@angular/forms';
 import EditProjectService from '../../services/edit-project.service';
 import { Subscription } from 'rxjs';
 import ImageVO from '../../value-objecs/image';
-import { AsyncPipe } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
+import { UploadInputComponent } from "../../components/upload-input/upload-input";
+import { HeaderComponent } from "../../components/header/header.component";
 
 @Component({
     selector: 'project-editing',
     standalone: true,
-    imports: [ReactiveFormsModule, AsyncPipe],
+    imports: [ReactiveFormsModule, AsyncPipe, UploadInputComponent, NgClass, HeaderComponent],
     templateUrl: './project-editing.component.html',
+    styleUrl: './project-editing.component.scss',
 })
 export class ProjectEditingComponent implements OnInit {
     private readonly _editProject = inject(EditProjectService)
@@ -93,5 +96,9 @@ export class ProjectEditingComponent implements OnInit {
         const validTypes = ['image/jpeg', 'image/png']
         if (validTypes.indexOf(file.type) !== -1) return null
         return { invalidFileType: true }
+    }
+
+    onChangeCoverImg(img: File | null) {
+        this.coverImgControl.setValue(img)
     }
 }
