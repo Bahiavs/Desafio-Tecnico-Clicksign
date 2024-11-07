@@ -4,8 +4,7 @@
 }
 
 #return-btn {
-    // font-family: Encode Sans Semi Expanded;
-    // line-height: 20px;
+    line-height: 20px;
     display: flex;
     align-items: center;
     gap: .5rem;
@@ -15,8 +14,7 @@
 }
 
 #new-project {
-    // font-family: Encode Sans Semi Expanded;
-    // line-height: 30px;
+    line-height: 30px;
     font-size: 1.5rem;
     font-weight: 600;
     color: #1F1283;
@@ -62,7 +60,6 @@
 }
 
 .error-msg {
-    // font-family: Encode Sans Semi Expanded;
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
@@ -90,8 +87,7 @@
 }
 
 #save-btn {
-    // font-family: Encode Sans Semi Expanded;
-    // line-height: 22px;
+    line-height: 22px;
     text-align: center;
     font-size: 20px;
     font-weight: 400;
@@ -108,7 +104,6 @@
 }
 
 input {
-    // font-family: Encode Sans Semi Expanded;
     width: 100%;
     box-sizing: border-box;
     height: 40px;
@@ -124,8 +119,7 @@ input {
 }
 
 label {
-    // font-family: Encode Sans Semi Expanded;
-    // line-height: 22px;
+    line-height: 22px;
     font-size: 18px;
     font-weight: 500;
     color: #695CCD;
@@ -135,8 +129,7 @@ label {
     gap: .5rem;
 
     &>span {
-        // font-family: Encode Sans Semi Expanded;
-        // line-height: 22px;
+        line-height: 22px;
         font-size: 14px;
         font-weight: 400;
         color: #717171;

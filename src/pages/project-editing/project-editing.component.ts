@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import GetProjectService from '../../services/get-project.service';
-import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import EditProjectService from '../../services/edit-project.service';
 import { Subscription } from 'rxjs';
 import ImageVO from '../../value-objecs/image';
@@ -23,10 +23,10 @@ export class ProjectEditingComponent implements OnInit {
     private readonly _getProject = inject(GetProjectService)
     private readonly _subscriptions = new Subscription()
     private _projectID: string | null = null
-    readonly nameControl = new FormControl('')
-    readonly costumerControl = new FormControl('')
-    readonly startDateControl = new FormControl<string | null>(null)
-    readonly endDateControl = new FormControl<string | null>(null)
+    readonly nameControl = new FormControl('', Validators.required)
+    readonly costumerControl = new FormControl('', Validators.required)
+    readonly startDateControl = new FormControl<string | null>(null, Validators.required)
+    readonly endDateControl = new FormControl<string | null>(null, Validators.required)
     readonly coverImgControl = new FormControl<File | null>(null, this._fileTypeValidator)
     img: null | ImageVO = null
 

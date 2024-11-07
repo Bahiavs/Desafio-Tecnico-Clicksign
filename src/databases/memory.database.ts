@@ -1,4 +1,5 @@
 export default class MemoryDB {
+    // private _storage: any[] = []
     private _storage: any[] = [
         { id: 'a4012065-4f2f-4a64-bba6-0deeec252896', name: 'Projeto 07', costumer: 'Clicksign', startDate: new Date(2000, 0), endDate: new Date(2001, 0), coverImg: null, isStarred: false },
         { id: '0c542257-9a95-4ad4-a8fd-4ff73edaa437', name: 'Projeto 01', costumer: 'Clicksign', startDate: new Date(2002, 0), endDate: new Date(2003, 0), coverImg: null, isStarred: true },
