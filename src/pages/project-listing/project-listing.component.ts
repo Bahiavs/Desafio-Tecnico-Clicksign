@@ -10,11 +10,12 @@ import ToggleProjectStarService from '../../services/toggle-project-star.service
 import { MenuButtonComponent } from '../../components/menu-button/menu-button.component';
 import { StarToggleComponent } from '../../components/star-toggle/star-toggle.component';
 import { HeaderComponent } from "../../components/header/header.component";
+import { SlideToggleComponent } from "../../components/slide-toggle/slide-toggle.component";
 
 @Component({
     selector: 'project-listing',
     standalone: true,
-    imports: [AsyncPipe, JsonPipe, ReactiveFormsModule, DatePipe, MenuButtonComponent, StarToggleComponent, HeaderComponent],
+    imports: [AsyncPipe, JsonPipe, ReactiveFormsModule, DatePipe, MenuButtonComponent, StarToggleComponent, HeaderComponent, SlideToggleComponent],
     templateUrl: './project-listing.component.html',
     styleUrl: './project-listing.component.scss'
 })

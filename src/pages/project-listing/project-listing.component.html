@@ -14,7 +14,7 @@
             <span id="project-amount">({{(projects$ | async)?.length}})</span>
         </div>
         <div id="star-filter-ctn">
-            <input [formControl]="filterStarredControl" type="checkbox" />
+            <slide-toggle (click)="filterStarredControl.setValue(!filterStarredControl.value)" [active]="filterStarredControl.value ?? false" />
             <span id="only-star">Apenas Favoritos</span>
         </div>
         <select [formControl]="assortmentControl" id="sort-select">
