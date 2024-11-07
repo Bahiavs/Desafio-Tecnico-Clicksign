@@ -50,7 +50,11 @@
                         </button>
                     </button>
                 </div>
-                <img class="cover-img" [attr.src]="project.coverImg?.getImgUrl$ | async"/>
+                @if (project.coverImg) {
+                    <img class="cover-img" [attr.src]="(project.coverImg.getImgUrl$ | async)"/>
+                } @else { 
+                    <img class="cover-img" src="assets/cover.png"/>
+                }
             </div>
             <div class="card-bottom">
                 <div class="project-name">{{project.name}}</div>
